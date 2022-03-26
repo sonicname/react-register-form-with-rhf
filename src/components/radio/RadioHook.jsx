@@ -8,7 +8,7 @@ const RadioHook = ({ control, ...props }) => {
   });
   return (
     <label className="cursor-pointer custom-radio">
-      <input className="hidden" type="radio" {...field} />
+      <input className="hidden" type="radio" {...field} value={props.value} />
       <div className="bg-white w-full h-full rounded-full" />
     </label>
   );
