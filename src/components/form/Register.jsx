@@ -3,13 +3,16 @@ import { useForm } from "react-hook-form";
 import InputHook from "../input/InputHook";
 import RadioHook from "../radio/RadioHook";
 import CheckBoxHook from "../checkbox/CheckBoxHook";
+import DropDownHook from "../dropdown/DropDownHook";
+
+import { dropdownData } from "../../data/dropdownData";
 
 const Register = () => {
   const {
-    register,
     handleSubmit,
     formState: { errors },
     control,
+    setValue,
   } = useForm();
 
   const handleSubmitForm = (value) => {
@@ -64,20 +67,29 @@ const Register = () => {
       {/* GENDER */}
       <div className="flex flex-col gap-3 mb-5">
         <label className="cursor-pointer">Gender</label>
-
         <div className="flex items-center gap-5">
           <div className="flex items-center gap-x-3">
             <RadioHook control={control} name="gender" value="male" />
             <span>Male</span>
           </div>
-
           <div className="flex items-center gap-x-3">
             <RadioHook control={control} name="gender" value="female" />
             <span>Female</span>
           </div>
         </div>
       </div>
-
+      {/* Job dropdown */}
+      <div className="flex flex-col gap-3 mb-5">
+        <label className="cursor-pointer">Are you?</label>
+        <DropDownHook
+          control={control}
+          setValue={setValue}
+          name="job"
+          data={dropdownData}
+          dropdownLabel={"Select Your Job"}
+        />
+      </div>
+      {/* Terms */}
       <div>
         <CheckBoxHook
           control={control}
@@ -85,7 +97,7 @@ const Register = () => {
           name="terms"
         />
       </div>
-
+      {/* Submit */}
       <button className="w-full p-5 bg-blue-500 text-white rounded-lg mt-5 font-semibold">
         Submit
       </button>
